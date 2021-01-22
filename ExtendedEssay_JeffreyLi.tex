@@ -1,0 +1,417 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{graphicx,amsmath,amsfonts,amssymb, epsfig,color,url, amsthm}
+\usepackage{siunitx}
+\usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{makecell}
+\usepackage{url}
+\usepackage{longtable}
+\usepackage{csvsimple}
+\usepackage{placeins} % put this in your pre-amble
+\usepackage{flafter}
+\usepackage{mathrsfs} % https://www.ctan.org/pkg/mathrsfs
+\usepackage[version=4]{mhchem}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{mathtools}
+\sisetup{detect-all}
+
+\makeatletter
+\providecommand\add@text{}
+\newcommand\tagaddtext[1]{%
+  \gdef\add@text{#1\gdef\add@text{}}}% 
+\renewcommand\tagform@[1]{%  
+  \maketag@@@{\llap{\add@text\quad}(\ignorespaces#1\unskip\@@italiccorr)}%
+}
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\newcommand{\B}[1]{\boldsymbol{#1}}
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Path Stability, Jeffrey Li}
+\rfoot{Page \thepage}
+\linespread{1}
+\title{
+  {\LARGE
+   \textbf{Stability Of Paths}
+   }\\~\\
+   {\large
+    \textbf{In what conditions is a path through a dynamic system stable?}
+   }\\~\\
+  {\large Mathematics Extended Essay}\\
+  {\large Colonel By Secondary School}
+}
+\author{Jeffrey Li}
+\date{2020 09 30}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[definition]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\doublespacing
+
+\begin{document}
+
+\maketitle
+\break
+
+\section*{Abstract}
+In this paper, we first reestablish the foundations of classical
+Lyapunov point stability. We then extend Lyapunov's arguments
+and establish a rigorous definition of Path Stability, in keeping 
+with Lyapunov's original reasoning. Next, we note some important 
+properties derived from the definition of Path Stability which 
+allow the emergent behavior of the path to be decomposed and 
+analyzed individually on each point. Finally, by linearizing
+the differential equation describing change of state, we arrive at insights
+linking the stability of the path to the Quadratic Form of
+the Jacobian of the system, another problem that has extensive 
+literature in the field of linear algebra, demonstrating
+the concept of Path Stability has deep conceptual roots
+reaching into the heart of mathematics.
+
+\break
+
+\tableofcontents
+\break
+
+
+\section{Research Question}
+Given a particle travelling under a dynamic system, 
+under what conditions will an arbitrarily small disturbance to the initial 
+position always result in an arbitrarily small displacement to the new path,
+regardless of the time? 
+
+\section{Introduction}
+In life, we can often describe the phenomenon we observe as a product of two factors:
+ever-present change and an element of randomness.
+
+Firstly, the way in which things change often can be described as a dynamic system,
+which are systems whose development in time is dependent upon their current state. Dynamic systems are integral to 
+many fields of study; through Hamiltonian mechanics, we can understand motion
+as a dynamic system whose state is defined as the combination of position and velocity.
+In ecological models, populations will grow if resources are abundant, and shrink if
+resources are scarce. Hence, the change from one year to the next is largely dependent
+upon the population of a species from the year before. 
+
+Secondly, no idealized model is ever perfectly accurate to its real world counterpart
+because of the prevalence of random disturbances of various magnitudes throughout
+every aspect of life. The work of the Russian mathematician
+Aleksandr Lyapunov \cite{Lyapunov:1992} at the turn of the 20th century has given mathematicians 
+frameworks and methods for understanding the stability of a system; 
+in other words, to what degree the system is  
+resilient to small initial disturbances. In the following century, this
+topic has been extensively studied with respect to stable \textit{points},
+but not much work exists in comparison in studying the
+stability of entire \textit{paths}, studying how the state of a system
+develops over an arbitrarily large duration of time.
+
+
+\section{Dynamic Systems}
+
+For me, the consideration of the problem of stability arose from
+contemplating a ball in a rounded crater. The ball may start at any
+point along within the semi-circular cavity, but would always roll
+down and come to rest at the center.  
+In this paper, we will be considering systems whose state in its entirety 
+can be specified using a combination of $n$ real numbers. 
+
+\section{Lyapunov Stability of the First Kind}
+
+
+
+We begin this section by defining the system $\mathcal{S}$ as $f_s(\B{x}) : \mathcal{D} \to \mathbb{R}^n$, where
+$\mathcal{D} \subseteq \mathbb{R}^n$. We use $\B{x}_0$ to represent a general vector in $\mathcal{D}$, and define 
+$P_{x_0}(t) : \left[0, \infty \right) \to \mathcal{D}$ to be a path function with the following properties.
+$P_{x_0}(0) = \B{x}_0$ and $\frac{d}{dt} \left(P_{x_0}(t)\right)  = \dot{P}_{x_0}(t) = f_s(P_{x_0}(t)).$
+
+\begin{definition}[Lyapunov Stability]
+  \label{Lyapunov Stability}
+  From Aleksandr Lyapunov \cite{Lyapunov:1992}, we say that the system $\mathcal{S}$ is stable at
+  $\B{x}_e$ if, for every $\epsilon > 0$, there exists $\delta > 0$
+  such that for every $P_{x_0}(t)$ where $\norm{\B{x}_e - P_{x_0}(0)} < \delta $,
+  we have $\norm{\B{x}_e - P_{x_0}(t)} < \epsilon$
+  for all $t \in \left[0, \infty \right)$.
+\end{definition}
+
+\begin{remark}
+  \label{OpenBall}
+  Intuitively, a system is considered stable at the point $\B{x}_e$ if, for every open ball $B_\epsilon$
+  around $\B{x}_e$ of size $\epsilon$, there exists another open ball $B_\delta$ of size $\delta$ such
+  that all paths that start in $B_\delta$ will stay within $B_\epsilon$.
+\end{remark}
+
+% \subsection{Unbounded Path Stability}
+% Next, we will consider the unbounded stability of the path
+% $P_{x_0} \in {\mathcal {D}}\subseteq \mathbb {R} ^{n} $.
+
+% \begin{definition}[Unbounded Path Stability]
+%   \label{Unbounded Stability}
+%   A path $P_{x_0}$ is defined to be Unbounded Stable if, for some constant $\epsilon > 0$,
+%   there exists $\delta > 0$ such that for every $\B{x}_\delta$ where
+%   $\norm{\B{x}_\delta} < \delta$, then $\norm{P_{x_0}(t) - P_{\left(x_0 + x_\delta\right)}(t)} < \epsilon$ $\forall t \in \left[0, \infty \right)$
+% \end{definition}
+
+% \begin{theorem}
+% Let $\B{x}_e$ be a stable point in $\mathcal{D}$. Then for every $\epsilon > 0$,
+% there exists $\delta > 0$ such that all paths $P_{x_0}$ where $\norm{\B{x}_0 - \B{x}_e} < \delta$ are
+% Unbounded Stable as defined in \ref{Unbounded Stability}.
+% \end{theorem}
+
+% \begin{proof}
+%   Given $\epsilon$, let $B_\alpha$ be equal to the open ball centered at $\B{x}_e$ of radius $\epsilon/2$.
+%   From theorem \ref{Lyapunov Stability}, there exists the open ball $B_\beta$ with radius $\beta$ such that all paths
+%   starting in $B_\beta$ remain in $B_\alpha$. By the definition of an open set, each point $\B{x}_k$
+%   within an open ball $B$ is itself
+%   the center of an open ball of radius $r_k > 0$ contained entirely within $B$. Therefore, for some
+%   $\B{x}_0 \in B_\beta$, if $\delta_2 = \beta - \norm{\B{x}_0} > \norm{\B{x}_\beta}$, then
+%   $\B{x}_0 + \B{x}_\beta \in B_\beta$ for any $\B{x}_\beta$. Therefore, $\forall t \geq 0$,
+%   $P_{x_0}(t) \text{ and } P_{x_0 + x_\beta}(t) \in B_\alpha$. For any two points $\B{x}_1, \B{x}_2 \in B_\alpha$,
+%   $\norm{\B{x}_1 - \B{x}_2} < 2\norm{B_\alpha} = 2 \epsilon/2 = \epsilon$. Therefore
+%   $\norm{P_{x_0}(t) - P_{x_0 + x_\delta}(t)} < \epsilon$ $\forall t \in \left[0, \infty \right)$.
+% \end{proof}
+
+\section{Bounded Path Stability}
+Next, I used the method of defining stability in definition \ref{Lyapunov Stability}
+and changed it to apply to paths as a generalization of point stability.
+\begin{definition}[Bounded Stability]
+  \label{Bounded Stability}
+  A path function $P_{x_0}(t)$ is said to be bounded stable if, for \textit{every}
+  $\epsilon > 0$, there exists $\delta > 0$ such that for every $\B{x}_\delta$ where
+  $\norm{\B{x}_\delta} < \delta$, we have $\norm{P_{x_0}(t) - P_{\left(x_0 + x_\delta\right)}(t)} < \epsilon$ for all $t \in \left[0, \infty \right)$
+\end{definition}
+
+\begin{definition}[Local Attractiveness]
+  \label{Local Path Attractiveness}
+  A point $\B{x}_0 \in \mathcal{D}$ is said to be locally attractive if,
+  for every $\epsilon > 0$, there exists $\delta \in \left(0, \epsilon\right]$ such that
+  for every $\B{x}_\delta$ where $\norm{\B{x}_\delta} < \delta$,
+  there exists $\sigma > 0$ for which the following is true
+  for all $\Delta t \in \left[0, \sigma \right)$.
+  \begin{align}
+  \norm{P_{x_0}(0) - P_{\left(x_0 + x_\delta\right)}(0)} \ge \norm{P_{x_0}(\Delta t) - P_{\left(x_0 + x_\delta\right)}(\Delta t)}.
+  \end{align}  
+\end{definition}
+
+\begin{theorem}[Time Invariance]
+  \label{Time Invariance}
+  For any two paths $P_{\B{x}_0}$ and $P_{\B{x}_1}$, if there exists $t_0, t_1 \geq 0$ such that
+  $P_{\B{x}_0}(t_0) = P_{\B{x}_1}(t_1)$, then $P_{\B{x}_0}(t_0 + s) = P_{\B{x}_1}(t_1 + s)$ for all $s \geq 0$.
+\end{theorem}
+
+\begin{proof}
+  From the Taylor series expansion of a function $f(t)$ as found in Taylor \cite{AdvancedCalculus},
+  \begin{align}
+    P_{\B{x}_0}(t_0 + s) &= P_{\B{x}_0}(t_0) + \sum_{n=1}^{\infty} \frac{s^n}{n!} P_{\B{x}_0}^{(n)}(t_0) \nonumber\\
+    & = P_{\B{x}_0}(t_0) + \sum_{n=1}^{\infty} \frac{s^n}{n!} \left( \left. \frac{d}{dt}P_{\B{x}_0}^{(n-1)}(t) \right\rvert_{t=t_0} \right) \nonumber\\
+    & = P_{\B{x}_0}(t_0) + \sum_{n=1}^{\infty} \frac{s^n}{n!} \left( \B{f}_s^{(n-1)} \left( P_{\B{x}_0}(t_0) \right) \right) \nonumber\\
+    & = P_{\B{x}_1}(t_1) + \sum_{n=1}^{\infty} \frac{s^n}{n!} \left( \B{f}_s^{(n-1)} \left( P_{\B{x}_1}(t_1) \right) \right) \nonumber\\
+    & = P_{\B{x}_1}(t_1 + s) \nonumber
+  \end{align}
+\end{proof}
+
+\begin{theorem}
+  \label{Attractiveness Stability}
+  For some path $P_{\B{x}_0}$, if every point on the path denoted by
+  $\B{x}_t = P_{\B{x}_0}(t)$, where $t \in \left[0, \infty \right)$, is locally attractive,
+  then the path $P_{\B{x}_0}$ is bounded stable.
+\end{theorem}
+
+% ALSO NEED TO INCLUDE TIME INVARIANCE FML
+\begin{proof}
+  Let $\tau > 0$ be an arbitrarily large length of time.
+  For a given $\epsilon > 0$ and some $t \in [0, \tau]$, let $\delta_t \in \left(0,\epsilon\right]$ be equal to the
+  corresponding $\delta$ value given in definition \ref{Attractiveness Stability}.
+  We define $\delta_{min} = min\{ \delta_t: 0 \leq t \leq \tau\}$, and let $P_{\B{x}_\phi}(t)$ be any path such that $\norm{P_{\B{x}_\phi}(0)-P_{\B{x}_0}(0)} < \delta_{min}$.
+
+  In the following, we use proof by contradiction to prove that, for all $\B{x}_\phi$ where $\norm{\B{x}_\phi - \B{x}_0} < \delta_{min}$ and $t \in [0, \tau]$, $\norm{P_{\B{x}_\phi}(t)-P_{\B{x}_0}(t)} \leq \norm{\B{x}_\phi - \B{x}_0}$.
+
+  We let $D(t) = \norm{P_{\B{x}_\phi}(t)-P_{\B{x}_0}(t)}$, and assume that there exists
+  some $t_0 \in [0, \tau]$ such that $D(t_0) > D(0) = \norm{\B{x}_\phi - \B{x}_0}$.
+  By definition of a path function, $P_{\B{x}_\phi}(t)$ and $P_{\B{x}_0}(t)$ are continuous on domain
+  $\left[0, \infty\right)$ and the norm $\norm{\B{x}}$ is continuous on domain $\mathcal{D}$.
+  Therefore, $D(t)$ is also continuous on $t \in \left[0, \infty\right)$, and there must exist some $t_1 \in \left[0, t_0\right)$
+  such that $D(t_1) = D(0)$ and,
+  \begin{align}
+  D(t_k) > D(t_1) = D(0) = \norm{\B{x}_\phi - \B{x}_0}, ~~~~~~~ &\forall ~t_k \in \left(t_1, t_0\right).  \label{contradiction}
+  \end{align}
+
+  We let $\B{x}_\alpha = P_{\B{x}_0}(t_1)$ and $\B{x}_\beta = P_{\B{x}_\phi}(t_1)$. Then we have,
+  \begin{align}
+  D(t_1) &= \norm{P_{\B{x}_\phi}(t_1)-P_{\B{x}_0}(t_1)} \nonumber\\
+  &= \norm{\B{x}_\beta - \B{x}_\alpha} \nonumber\\
+  &= D(0) \nonumber\\
+  & = \norm{P_{\B{x}_\phi}(0)-P_{\B{x}_0}(0)} \nonumber\\
+  &= \norm{\B{x}_\phi - \B{x}_0} \nonumber\\
+  &< \delta_{min} \leq \delta_{t_1},
+  \end{align}
+  from which there exists some $\sigma$ such that for all $\Delta t \in \left[0, \sigma\right)$, we have,
+  \begin{align}
+  \norm{P_{\B{x}_\alpha}(0) - P_{\B{x}_\beta}(0)} \ge \norm{P_{\B{x}_\alpha}(\Delta t) - P_{\B{x}_{\beta}}(\Delta t)} \label{attractiveness}
+  \end{align}
+  by local attractiveness.
+      
+  Since $P_{\B{x}_\alpha}(0) = \B{x}_\alpha$, we have $P_{\B{x}_0}(t_1 + s) = P_{\B{x}_\alpha}(s)$   for all $s \geq 0$ by theorem \ref{Time Invariance}. Similarly, we have $P_{\B{x}_\phi}(t_1 + s) = P_{\B{x}_\beta}(s)$ for all $s \geq 0$. By setting $s=0$ on the left side 
+  of equation \ref{attractiveness} and $s=\Delta t$ on the right side of equation \ref{attractiveness}, we obtain,
+  $$
+  D(t_1) = \norm{P_{\B{x}_0}(t_1) - P_{\B{x}_\phi}(t_1)} \geq \norm{P_{\B{x}_0}(t_1 + \Delta t) - P_{\B{x}_\phi}(t_1 + \Delta t)},
+  $$
+  for some $\Delta t \in \left(0, t_0 - t_1\right)$. This is contradictory with equation~\ref{contradiction}.  
+  Therefore, $\norm{P_{\B{x}_\phi}(t)-P_{\B{x}_0}(t)} \leq \norm{\B{x}_\phi - \B{x}_0} < \delta_{min}$ for all
+  $t \in [0, \tau]$. Since $\tau$ can be an arbitrarily large length of time, we can conclude that $P_{\B{x}_0}(t)$ is bounded stable by denoting
+  $\delta=\delta_{min}$ and $\B{x}_\delta=\B{x}_\phi - \B{x}_0$.
+\end{proof}
+
+\begin{theorem}
+  \label{Local Dot Product}
+  For some point $\B{x}_0$, if there exists $\delta > 0$ such that for every
+  $\B{x}_\alpha$ where $\norm{\B{x}_0 - \B{x}_\alpha} < \delta$, the following inequality holds.
+  $$(\B{x}_0 - \B{x}_\alpha) \bigcdot~ \left(\dot{P}_{\B{x}_0}(0) - \dot{P}_{\B{x}_\alpha}(0)\right) < 0.$$
+  Then $\B{x}_0$ is locally attractive.
+\end{theorem}
+
+\begin{proof}
+  Let $\B{x}(t): \mathbb{R} \to \mathbb{R}^n$ be a continuous and differentiable vector valued
+  function. Let the function $d(t) = \norm{\B{x}(t)}$ be the norm of $\B{x}(t)$ for $t \in \mathbb{R}$.
+  For any time $t$, we re-write $\B{x}(t)$ as $\left( x_1(t), x_2(t)..., x_n(t) \right)$
+  where $x_i(t) : \mathbb{R} \to \mathbb{R}$ for $i = 1, 2, \cdots, n$. By definition of the norm in $\mathcal{R}^n$,
+  \begin{align}
+    (d(t))^2 &= \sum_{i=1}^n x_i(t)^2 & \Longrightarrow \nonumber\\
+    \frac{d}{dt} \left((d(t))^2\right) &= \frac{d}{dt} \left(\sum_{i=1}^n x_i(t)^2\right)  & \Longrightarrow \nonumber\\
+    2d(t)\dot{d}(t) &= 2\sum_{i=1}^n x_i(t)\dot{x}_i(t)  & \Longrightarrow \nonumber\\
+    d(t)\dot{d}(t) &=  \B{x}(t)  \bigcdot~ \dot{\B{x}}(t) \label{Distance Derivative}
+  \end{align}
+
+  Given the paths $P_{\B{x}_0}, P_{\B{x}_\alpha}$ as defined in theorem \ref{Local Dot Product},
+  we define $\B{x}_\delta(t) = P_{\B{x}_\alpha}(t) - P_{\B{x}_0}(t)$, which implies
+  $\dot{\B{x}}_\delta(t) = \dot{P}_{\B{x}_\alpha}(t) - \dot{P}_{\B{x}_0}(t)$.
+  Therefore,
+  \begin{align}
+  \B{x}_\delta(t) \bigcdot~  \dot{\B{x}}_\delta(t) & = \left(P_{\B{x}_\alpha}(t) - P_{\B{x}_0}(t)\right) \bigcdot~ \left( \dot{P}_{\B{x}_\alpha}(t) - \dot{P}_{\B{x}_0}(t)\right).\label{Distance-subtract}
+  \end{align}
+  Note that while $\B{x}_\delta(t)$ is a continuous and differentiable vector valued function because it is the sum
+  of two continuous and differentiable path functions, $\B{x}_\delta(t)$ itself is not necessarily a valid path.
+
+  From the inequality of theorem~\ref{Local Dot Product}, equation~\ref{Distance Derivative}, and equation~\ref{Distance-subtract},
+  we have $d_\delta(0)\dot{d}_\delta(0) < 0$ where $d_\delta(t) = \norm{\B{x}_\delta(t)} = \norm{P_{\B{x}_\alpha}(t) - P_{\B{x}_0}(t)}$
+  for all $t \in \mathbb{R}$. Since $d_\delta(t) \geq 0$ for all $t \in \mathbb{R}$ by the definition of the norm,
+  $\dot{d}_\delta(0) < 0$. By the Mean Value Theorem \cite{AdvancedCalculus}
+  and the definition of the derivative, there exists $t_1 > t_0=0$ such that for the following is true for all 
+  $\Delta t \in \left(0, t_1\right)$.
+  \begin{align}
+  \norm{P_{\B{x}_\alpha}(\Delta t) - P_{\B{x}_0}(\Delta t)} = d_\delta(\Delta t) < d_\delta(0) = \norm{P_{\B{x}_\alpha}(0) - P_{\B{x}_0}(0)}.\label{attractive-condition}
+  \end{align}
+    
+  Therefore, for every $\epsilon > 0$, there exists $\hat{\delta} = \min\{\epsilon, \delta\} \in \left(0, \epsilon\right]$ such that
+  for all $\B{x}_\delta = \B{x}_\alpha - \B{x}_0$ with $\norm{\B{x}_\delta} < \hat{\delta}$,
+  we always can find $\sigma = t_1 > 0$ for which the following is true for all $\Delta t \in \left(0, \sigma\right)$.  
+  \begin{align}
+  \norm{P_{\B{x}_0}(0) - P_{\B{x}_\alpha}(0)} \geq \norm{P_{\B{x}_0}(\Delta t) - P_{\B{x}_\alpha}(\Delta t)}.
+  \end{align}
+  By definition~\ref{Local Path Attractiveness}, the point $\B{x}_0$ is locally attractive.
+\end{proof}
+
+\section{Linearization}
+To linearize the function $\B{f}_s$, we evaluate its Jacobian as defined by Taylor \cite{AdvancedCalculus}.
+\begin{definition}[Jacobian]
+  \label{Jacobian Approximation}
+  Given $\B{x}_0$ and some unit vector $\B{x}_\delta$ for which $\norm{\B{x}_\delta} = 1$,
+  the Jacobian matrix of $\B{f}_s$ evaluated at point $\B{x}_0$ is the linear transformation 
+  from $\mathbb{R}^n \to \mathbb{R}^n$
+  denoted by $\B{J}_{\B{f}_s}(\B{x}_0)$ and given in the following equation.
+  \begin{align}
+  \lim_{c \to 0} \frac{f_s(\B{x}_0 + c \B{x}_\delta) - f_s(\B{x}_0)}{c} = \B{J}_{\B{f}_s}(\B{x}_0)(\B{x}_\delta).\label{jacobian}
+  \end{align}
+\end{definition}
+\begin{definition}[Negative Definite]
+  \label{Negative Definite}
+  A linear transformation denoted by \\
+  $\mathscr{T}(\B{x}) \in \mathcal{L}_{n,n}$ is said to be Negative Definite \cite{LinearAlgebra}
+  if, for each non-zero vector $\B{x} \in \mathbb{R}^n$, $\B{x}^T \mathscr{T}\B{x} < 0$.
+\end{definition}
+\begin{theorem}
+  \label{Negative Definite Path Stability}
+  For a given path $P_{\B{x}_0}(t)$, if for each point $\B{x}_t = P_{\B{x}_0}(t)$,
+  the linear transformation led by $\B{J}_{\B{f}_s}(\B{x}_t)$
+  is negative definite, then $P_{\B{x}_0}(t)$ is bounded stable.
+\end{theorem}
+
+\begin{proof}
+  \label{final}
+  From definition~\ref{Negative Definite}, the linear transformation led by $\B{J}_{\B{f}_s}(\B{x}_t)$
+  is negative definite, if and only if for unit displacement vectors $\B{x}_\delta$, we have,
+  \begin{align}
+  \B(\B{x}_\delta)^T\B{J}_{\B{f}_s}(\B{x}_t)(\B{x}_\delta) =\B(\B{x}_\delta)  \bigcdot~ \left(\B{J}_{\B{f}_s}(\B{x}_t)(\B{x}_\delta)\right) < 0. \label{eq:jacobian-dot-product}
+  \end{align}
+  
+  The inner product $\B{x}  \bigcdot~ \B{y}$ is defined to be continuous for any $\B{x}, \B{y} \in \mathbb{R}^n$.
+  If $\B{x}  \bigcdot~ \B{y} < 0$, by definition of continuity, there exists some $\epsilon_1 > 0$ such that for all $\B{z} \in \mathbb{R}^n$,
+  \begin{align}
+    \norm{\B{z} - \B{y}} < \epsilon_1 \implies \B{x}  \bigcdot~ \B{z} < 0.  \label{eq:1}
+  \end{align}
+  
+  From equation~\ref{jacobian}, we know that for any $\epsilon_1 > 0$, we can find $\delta_1 > 0$
+  such that for scalar $c$,
+  \begin{align}
+    \abs{c} \in (0, \delta_1) \implies \norm{\frac{f_s(\B{x}_t + c \B{x}_\delta) - f_s(\B{x}_t)}{c}} < \epsilon_1 \label{eq:2}
+  \end{align}
+  
+  Combining equation~\refeq{eq:1} and equation~\refeq{eq:2} into equation~\refeq{eq:jacobian-dot-product}, we obtain,
+  \begin{align}
+    c\B{x}_\delta  \bigcdot~ \left(\frac{f_s(\B{x}_t + c \B{x}_\delta) - f_s(\B{x}_t)}{c}\right) < 0,\nonumber\\
+  \end{align}
+  which gives rise to,
+  \begin{align}
+    \B{x}_\delta  \bigcdot~ \left(f_s(\B{x}_t + c \B{x}_\delta) - f_s(\B{x}_t)\right) < 0.
+  \end{align}
+    
+  Because for all $\epsilon_1 > 0$, we can find $\delta_1 > 0$ such that, for all $\B{x}_{\delta_1} = |c|\B{x}_{\delta}$   
+  satisfying $\norm{\B{x}_{\delta_1}} < \delta_1$, the following is true.
+  \begin{align}
+    \B{x}_{\delta_1}  \bigcdot~ \left(f_s(\B{x}_t + \B{x}_{\delta_1}) - f_s(\B{x}_t)\right) < 0.
+  \end{align}
+  By theorem \ref{Local Dot Product}, the point $\B{x}_t$ is locally attractive. Because this applies to an arbitrary $\B{x}_t = P_{\B{x}_0}(t)$,
+  all points on the path are locally attractive. By theorem \ref{Attractiveness Stability},
+  the path $P_{\B{x}_0}(t)$ is bounded stable as defined in \ref{Bounded Stability}.\\  
+  QUOD ERAT DEMONSTRANDUM.
+\end{proof}
+
+\section{Conclusion}
+This paper has explored the idea of stability and its standard mathematical 
+representation. Taking Lyapunov's original idea, we have used the same
+epsilon-delta formalization to expand the concept to include entire paths.
+In determining if a path meets this definition of stability, it has been
+shown that if the set of all points on the path meet the criteria for 
+local attractiveness, as defined in the paper, then the path overall must 
+also be stable. In addition, by showing that points where the quadratic form
+of the Jacobian is negative determinant are always locally attractive, the paper
+presents a direct method of calculating the overall stability of a path, and 
+provides areas where this concept can be developed even further, most namely into
+the complex vector space, as well as into stochastic or time-variant systems. 
+
+
+\pagebreak
+\medskip
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
