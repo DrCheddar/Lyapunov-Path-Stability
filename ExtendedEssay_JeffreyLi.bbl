@@ -1,18 +1,18 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{}
 
-\bibitem{LinearAlgebra}
-James~W. Daniel and Ben Noble.
+\bibitem[Daniel and Noble, 1988]{LinearAlgebra}
+Daniel, J.~W. and Noble, B. (1988).
 \newblock {\em Applied Linear Algebra}.
-\newblock Englewood Cliffs, NJ, 3rd edition, 1988.
+\newblock Englewood Cliffs, NJ, 3rd edition.
 
-\bibitem{Lyapunov:1992}
-Aleksandr~Mikhailovich Lyapunov.
+\bibitem[Lyapunov, 1992]{Lyapunov:1992}
+Lyapunov, A.~M. (1992).
 \newblock The general problem of the stability of motion.
-\newblock {\em Control Theory and Applications Series}, 55(3), 1992.
+\newblock {\em Control Theory and Applications Series}, 55(3):531--773.
 
-\bibitem{AdvancedCalculus}
-Angus~E. Taylor and W.~Robert Mann.
+\bibitem[Taylor and Mann, 1983]{AdvancedCalculus}
+Taylor, A.~E. and Mann, W.~R. (1983).
 \newblock {\em Advanced Calculus}.
-\newblock John Wiley and Sons, Inc., 3rd edition, 1983.
+\newblock John Wiley and Sons, Inc., 3rd edition.
 
 \end{thebibliography}

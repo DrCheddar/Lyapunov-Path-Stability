@@ -1,9 +1,20 @@
 \babel@toc {english}{}
 \contentsline {section}{\numberline {1}Research Question}{4}% 
 \contentsline {section}{\numberline {2}Introduction}{4}% 
-\contentsline {section}{\numberline {3}Dynamic Systems}{5}% 
-\contentsline {section}{\numberline {4}Lyapunov Stability of the First Kind}{5}% 
-\contentsline {section}{\numberline {5}Bounded Path Stability}{5}% 
-\contentsline {section}{\numberline {6}Linearization}{9}% 
-\contentsline {section}{\numberline {7}Conclusion}{11}% 
-\contentsline {section}{References}{13}% 
+\contentsline {section}{\numberline {3}Motivation}{5}% 
+\contentsline {section}{\numberline {4}Dynamical Systems}{5}% 
+\contentsline {subsection}{\numberline {4.1}Definition}{5}% 
+\contentsline {subsection}{\numberline {4.2}Path Notation}{6}% 
+\contentsline {subsection}{\numberline {4.3}Evolution Function}{6}% 
+\contentsline {section}{\numberline {5}Lypaunov Point Stability}{7}% 
+\contentsline {section}{\numberline {6}Path Stability}{7}% 
+\contentsline {section}{\numberline {7}General Conditions For Path Stability}{9}% 
+\contentsline {subsection}{\numberline {7.1}Motivation}{9}% 
+\contentsline {subsection}{\numberline {7.2}Time Invariance}{10}% 
+\contentsline {subsection}{\numberline {7.3}Local Attractiveness}{11}% 
+\contentsline {section}{\numberline {8}Conditions For Local Attractiveness}{13}% 
+\contentsline {subsection}{\numberline {8.1}Local Distance Derivative}{13}% 
+\contentsline {subsection}{\numberline {8.2}Local Dot Product}{14}% 
+\contentsline {section}{\numberline {9}Linearization}{16}% 
+\contentsline {section}{\numberline {10}Conclusion}{18}% 
+\contentsline {section}{References}{19}% 
