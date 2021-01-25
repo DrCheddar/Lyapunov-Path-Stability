@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex ExtendedEssay_JeffreyLi"] 1611526984 "ExtendedEssay_JeffreyLi.aux" "ExtendedEssay_JeffreyLi.bbl" "ExtendedEssay_JeffreyLi" 1611527189
+["bibtex ExtendedEssay_JeffreyLi"] 1611526984 "ExtendedEssay_JeffreyLi.aux" "ExtendedEssay_JeffreyLi.bbl" "ExtendedEssay_JeffreyLi" 1611542088
   "C:/Program Files/MiKTeX 2.9/bibtex/bst/bibtex/apalike.bst" 1291972791 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "ExtendedEssay_JeffreyLi.aux" 1611527189 3366 2c27887205fdbe5b1e3af2a038908bed "pdflatex"
+  "ExtendedEssay_JeffreyLi.aux" 1611542087 3366 2c27887205fdbe5b1e3af2a038908bed "pdflatex"
   "references.bib" 1611526634 4134 9f4d96e7a518e517700fb7e3a4c66635 ""
   (generated)
-  "ExtendedEssay_JeffreyLi.blg"
   "ExtendedEssay_JeffreyLi.bbl"
-["pdflatex"] 1611527187 "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.tex" "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.pdf" "ExtendedEssay_JeffreyLi" 1611527189
+  "ExtendedEssay_JeffreyLi.blg"
+["pdflatex"] 1611542084 "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.tex" "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.pdf" "ExtendedEssay_JeffreyLi" 1611542088
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1233951848 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1233951848 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1233951848 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -160,16 +160,16 @@
   "C:/Users/DrChe/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs7.tfm" 1600725429 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
   "C:/Users/DrChe/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1568059902 4235383 693591fd1ea7ca11c829179bc9173e13 ""
   "C:/Users/DrChe/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1568059896 80453 73224248f0a73acd005b5611945eaaa6 ""
-  "ExtendedEssay_JeffreyLi.aux" 1611527189 3366 2c27887205fdbe5b1e3af2a038908bed "pdflatex"
+  "ExtendedEssay_JeffreyLi.aux" 1611542087 3366 2c27887205fdbe5b1e3af2a038908bed "pdflatex"
   "ExtendedEssay_JeffreyLi.bbl" 1611526984 606 609d4b4d05cdd75625aff7bffbc2fcce "bibtex ExtendedEssay_JeffreyLi"
-  "ExtendedEssay_JeffreyLi.tex" 1611527186 33421 7a09063bff1fd3361ef6e21cd2d982e7 ""
-  "ExtendedEssay_JeffreyLi.toc" 1611527189 1278 03f8b0743fe233c765a6d230bc161ede "pdflatex"
-  "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.aux" 1611527189 3366 2c27887205fdbe5b1e3af2a038908bed ""
-  "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.tex" 1611527186 33421 7a09063bff1fd3361ef6e21cd2d982e7 ""
+  "ExtendedEssay_JeffreyLi.tex" 1611542083 33443 4c6e7446f5a9abac08d17e006cf125df ""
+  "ExtendedEssay_JeffreyLi.toc" 1611542087 1278 03f8b0743fe233c765a6d230bc161ede "pdflatex"
+  "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.aux" 1611542087 3366 2c27887205fdbe5b1e3af2a038908bed ""
+  "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.tex" 1611542083 33443 4c6e7446f5a9abac08d17e006cf125df ""
   (generated)
-  "ExtendedEssay_JeffreyLi.toc"
-  "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.log"
-  "ExtendedEssay_JeffreyLi.pdf"
-  "ExtendedEssay_JeffreyLi.aux"
-  "ExtendedEssay_JeffreyLi.log"
   "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.pdf"
+  "ExtendedEssay_JeffreyLi.log"
+  "ExtendedEssay_JeffreyLi.pdf"
+  "ExtendedEssay_JeffreyLi.toc"
+  "ExtendedEssay_JeffreyLi.aux"
+  "c:/Data/School/2020-09-21 Math EE/ExtendedEssay_JeffreyLi.log"

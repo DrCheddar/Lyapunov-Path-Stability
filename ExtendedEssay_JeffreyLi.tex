@@ -54,7 +54,7 @@
   {\large Word Count: 3666}
 }
 \author{Jeffrey Li}
-\date{2020 09 30}
+\date{\today}
 
 
 \newtheorem{theorem}{Theorem}[section]
@@ -76,7 +76,7 @@
 \section*{Abstract}
 In this paper, we first reestablish the foundations of classical
 Lyapunov point stability. We then extend Lyapunov's arguments
-and establish a rigorous definition of Path Stability, in keeping 
+and establish a rigorous definition of Path Stability, in line 
 with Lyapunov's original reasoning. Next, we note some important 
 properties derived from the definition of Path Stability which 
 allow the emergent behavior of the path to be decomposed and 
@@ -148,8 +148,8 @@ the ball in a valley, the system can be said to be defined by the set of points 
 in combination with the laws of motion that dictate the ball's path. Thus in this paper, 
 a unique dynamic system of dimension $n$, denoted as $\mathcal{S}$,
 will refer to a unique domain $\mathcal{D} \in \mathbb{R}^n$ in conjunction with an associated 
-Evolution Function $f_s(\B{x}) : \mathcal{D} \to \mathbb{R}^n$ that gives the "trajectory" of a particle 
-when given its current "position". Inside of the domain $\mathcal{D}$, a point can be described using the vector $\B{x} \in \mathcal{D}$. 
+Evolution Function $f_s(\B{x}) : \mathcal{D} \to \mathbb{R}^n$ that gives the `trajectory' of a particle 
+when given its current `position'. Inside of the domain $\mathcal{D}$, a point can be described using the vector $\B{x} \in \mathcal{D}$. 
 Again referring to the initial example, the area encompassing the valley
 can be thought of as the system's domain $\mathcal{D}$, while the Evolution Function can be thought of as the
 laws of motion. A more formal description will be given in the following paragraph. 
@@ -199,12 +199,12 @@ layed out a definition for stability in a Dynamical System which is mathematical
 
 In essence, what this definition proposes is that a point is stable if a particle that
 starts `close' to it will always remain `close' to the initial point, even as time goes 
-to infinity. I found this formalization very compelling for two main reasons. First off,
+to infinity. I found this formalization very compelling for two main reasons. First of all,
 it captures the core of what the intuitive understanding of stability.
 Secondly, Lyapunov's definition allows for stability to be treated in a much more rigorous and analytical
 way, as the conditions it sets out can definitively proven to be true or false using strictly mathematical tools.
 Not only that, but because of its usage of the epsilon-delta formalization at the core of
-calculus, the further developments that I made felt very natural, and I was able use familiar methods of attack
+calculus, the further developments that I made followed very naturally, and I was able to use familiar methods of attack
 despite the novelty of the problem.
 
 
@@ -222,9 +222,9 @@ despite the novelty of the problem.
 Despite the ingenuity of Lyapunov's definition, there was still one major difference between my conception of stability and Lyapunov's.
 While Lyapunov treated stability in terms of the behavior of local points, I wanted to 
 describe stability in terms of local \textbf{\textit{paths}}. Because I really liked
-methods Lyapunov used in his approach, the first thing I did was take Lyapunov's original 
+methods Lyapunov used in his approach, the first thing I did was to take Lyapunov's original 
 conclusions and rephrase the formalization to relate to the behavior of paths. That 
-is how I came to my definition of Path Stability.
+is how I came to my definition of Path Stability, as follows:
 
 \begin{definition}[Path Stability]
   \label{def:Path Stability}
@@ -243,10 +243,10 @@ by Lyapunov, my definition substitutes the stable \textbf{path} $P_{x_e}$. This 
 yet powerful difference will be discussed in the following sections. 
 
 However, to conclude the current section, I will draw attention to the obvious corrolary resulting from the 
-parallel definitions - that being that any point which satisfies the conditions of Lyapunov 
+parallel definitions - that any point which satisfies the conditions of Lyapunov 
 Stability must also be the origin of a corresponding path that satisfies Path Stability.
 To illustrate this, note that in order for a point to be Lyapunov Stable, it must be 
-a point of equilibrium - in other words, its' path never moves and is defined as the constant function 
+a point of equilibrium - in other words, its path never moves and is defined as the constant function 
 $P_{x_e}(t) = \B{x_e}$ for every time $t$. Therefore, any other nearby path that permenantly stays 
 `close' to the \textit{point} $\B{x_e}$ will consequently also stay `close' to the \textit{path} $P_{x_e}(t)$.
 This corrolary serves to clearly show that Path Stability is not only fully compatable with Lyapunov's  
@@ -325,7 +325,7 @@ be stated as: if a given path $P_{x_0}$ is stable, then any other path that star
 $P_{x_0}$ must remain `nearby' for time $t \to \infty$.
 
 I considered what this meant for each individual point. If, at each point along the path,
-all `nearby' paths would be guaranteed remain `nearby' for an arbitrarily small period of time,
+all `nearby' paths would be guaranteed to remain `nearby' for an arbitrarily small period of time,
 then at no point along the entire path could a `nearby' path diverge. Intuitively, this might
 be obvious, but to specify precisely what is meant by `nearby' and `diverge', I developed the concept 
 of Local Attractiveness.  
@@ -403,7 +403,7 @@ arose because I tried to use the concept of the limit to `squeeze' all
 Having shown that Local Attractiveness directly results in Path Stability, the 
 next question to answer is what are the general conditions for a point to be Locally Attractive?
 From the definition, it is clear that if all `nearby' paths around a point are getting `closer'
-for some duration of time, then that point is locally attractive. This can be denoted analytically as: 
+for some duration of time, then that point is locally attractive. This can be denoted analytically as follows.
 
 \begin{theorem}
   \label{theorem:Local Distance}
@@ -428,11 +428,11 @@ for some duration of time, then that point is locally attractive. This can be de
 
 
 \subsection{Local Dot Product}
-Next, what conditions must a point satisfy such that the derivative of the distance between
+Next, what conditions must a point meet such that the derivative of the distance between
 it and any other local path is less than 0? To answer this, I considered that the displacement
 between any two paths $\Lambda(t) = (P_{\B{x}_\alpha}(\Delta t) - P_{\B{x}_0}(\Delta t))$ is itself
 a continuously differentiable vector valued function $\Lambda(t) : \mathbb{R} \to \mathbb{R}^n$. For a general vector,
-it's magnitude will decrease if another small vector that points in the `opposite' direction is added to it.
+its magnitude will decrease if another small vector that points in the `opposite' direction is added to it.
 Mathematically, the `opposite' direction can be denoted by the inner product $\hat{v} \bigcdot~ \hat{w} < 0$.
 Therefore:
 
@@ -488,7 +488,7 @@ Therefore, by theorems \ref{theorem:Local Distance} and \ref{theorem:Dot Product
 
 
 \section{Linearization}
-Finally, we will evaluate what conditions are necessary such that the aforementioned local dot product
+Finally, we will evaluate what conditions are sufficient to that the aforementioned local dot product
 is always negative. When dealing with differentials under an arbitrarily small limit, as is the current case,
 it is often useful to linearize the function's derivative, which is analogous to taking the slope of a curve.
 To linearize a vector function, we use the Jacobian operator, as defined in \cite{AdvancedCalculus}.
@@ -547,13 +547,13 @@ To linearize a vector function, we use the Jacobian operator, as defined in \cit
   Which, by theorem \ref{Local Dot Product}, proves $\B{x}_0$ is locally attractive.
 \end{proof}
 
-Finally, we note that if that linear transforms that satisfy equation \refeq{eq:JacobianDot} are called
+Finally, we note that linear transforms that satisfy equation \refeq{eq:JacobianDot} are called
 Negative Definite, a well studied property within linear algebra.
 \begin{definition}[Negative Definite]
   \label{Negative Definite}
   From \cite{LinearAlgebra}, a linear transformation denoted by
   $\mathscr{T}(\B{x}) \in \mathcal{L}_{n,n}$ is said to be Negative Definite
-  if, for each non-zero vector $\B{x} \in \mathbb{R}^n$, $\B{x}^T \mathscr{T}\B{x} < 0$.
+  if, for each non-zero vector $\B{x} \in \mathbb{R}^n$, the Quadratic Form $\B{x}^T \mathscr{T}\B{x} < 0$.
 \end{definition}
 
 Therefore, by combining theorems \ref{Attractiveness Stability}, \ref{theorem:Jacobian Local Attractive}, and definition \ref{Negative Definite},
@@ -571,11 +571,11 @@ QUOD ERAT DEMONSTRANDUM.
 This paper has explored the idea of stability and its standard mathematical 
 representation. Taking Lyapunov's original idea, we have used the same
 epsilon-delta formalization to expand the concept to include entire paths.
-In determining if a path meets this definition of stability, it has been
+To determine if a path meets this definition of stability, it has been
 shown that if the set of all points on the path meet the criteria for 
 local attractiveness, as defined in the paper, then the path overall must 
-also be stable. In addition, by showing that points where the quadratic form
-of the Jacobian is negative determinant are always locally attractive, the paper
+also be stable. In addition, by showing that points where the Quadratic Form
+of the Jacobian is Negative Determinant are always locally attractive, the paper
 presents a direct method of calculating the overall stability of a path, and 
 provides areas where this concept can be developed even further, most namely into
 the complex vector space, as well as into stochastic or time-variant systems. 
